@@ -1,0 +1,14 @@
+#preview {
+	width: 590px;
+	height: 285px;
+	resize: both;
+	overflow: hidden;
+	margin: 0 auto;
+	background-color: rgb(150, 150, 150);
+}
+
+#preview-iframe {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}

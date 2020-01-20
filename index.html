@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang=es>
+	<head>
+		<meta charset="utf-8">
+		<title>OpenWeather Stream Plugin</title>
+		<meta name="author" content="Jorge Vicuña">
+		<meta name="description" content="An (OBS/Xplit) Browser Plugin that shows ">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400i&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
+		<link href="css/main.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="jumbotron">
+				<h1 class="display-2">OpenWeather Stream Plugin</h1>
+				<p style="text-align: justify;">Have your local or somewhere else's current weather conditions shown in your stream!<br>
+				You'll need a Free API key from OpenWeather to use this <a href="https://openweathermap.org/price#commonquestions">(Registration needed).</a></p>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-5">
+					<form>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text">OpenWeather's API key</span></div>
+							<input name="api_key" type="text" class="form-control" required>
+						</div>
+						<div class="row">
+							<div class="input-group mb-3 col">
+								<div class="input-group-prepend"><span class="input-group-text">City</span></div>
+								<input type="text" class="form-control" name="city" required>
+							</div>
+							<div class="input-group mb-3 col">
+								<div class="input-group-prepend"><span class="input-group-text">Country</span></div>
+								<select name="country" class="custom-select" id="country-list">
+									<option value="" selected>Choose a Country</option>
+								</select>
+							</div>
+							
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text">Language</span></div>
+							<select name="lang" class="custom-select" id="language-list">
+								<option value="" selected>Language</option>
+							</select>
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend"><span class="input-group-text">Measure Units Format</span></div>
+							<select name="units" class="custom-select" id="units">
+								<option selected value="">Standard</option>
+								<option value="metric">Metric</option>
+								<option value="imperial">Imperial</option>
+							</select>
+						</div>
+						<div class="custom-control custom-switch custom-control-inline">
+							<input type="checkbox" class="custom-control-input" id="theme" name="theme">
+							<label class="custom-control-label" for="theme">Dark Theme</label>
+						</div>
+						<div class="custom-control custom-switch custom-control-inline">
+							<input type="checkbox" class="custom-control-input" id="show-location" name="show-place">
+							<label class="custom-control-label" for="show-location">Show location?</label>
+						</div>
+						<div class="custom-control custom-switch custom-control-inline">
+							<input type="checkbox" class="custom-control-input" id="full-description" name="full-description">
+							<label class="custom-control-label" for="full-description">Full Weather Description? (Affected by language)</label>
+						</div>
+						
+
+					</form>
+					<button id="generatePreview" type="button" class="btn btn-primary" onclick="makeURL();">Preview</button>
+					<button style="margin: 5px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#finalResultModal" onclick="makeURL();previewSize();">
+							Get URL
+					</button>
+						</div>
+					<div class="col-xl-7">
+						<div style="text-align: center; margin: 5px;">
+							<h3>Preview <span style="font-size: 0.5em;">(Resize me!)</span></h3>
+							
+						</div>
+						<div id="preview">
+							<iframe id="preview-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="finalResultModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalTitle">Almost done!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Now go to your streaming software and add a Browser/Website Source with this URL:</p>
+						<span class="rounded text-light bg-secondary" id="result-url" style="display:flex; padding: 5px;"></span>
+						<p>With width set at <span id="preview-width"></span>px and height at <span id="preview-height"></span>px.</p>
+						<p>Happy Streaming!</p>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+			crossorigin="anonymous"></script>
+		<script 
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
+			crossorigin="anonymous"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

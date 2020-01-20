@@ -1,0 +1,46 @@
+body {
+	margin: 5px 5px 5px 5px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-areas: "WeatherIcon CurrentTemp CurrentTemp" "WeatherIcon CurrentTemp CurrentTemp" "WeatherCondition MinTemp MaxTemp";
+	grid-column-gap: 5px;
+	grid-row-gap: 5px;
+}
+
+.WeatherIcon { grid-area: WeatherIcon; }
+
+.CurrentTemp { grid-area: CurrentTemp; font-size: 4em; }
+
+.WeatherCondition { grid-area: WeatherCondition; font-size: 2em; }
+
+.MinTemp { grid-area: MinTemp; font-size: 2em; }
+
+.MaxTemp { grid-area: MaxTemp; font-size: 2em; }
+
+.WeatherInfo {
+	padding: 5px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	border-radius: 5px;
+}
+
+.Dark {
+	background-color: rgba(0, 0, 0, 0.3);
+	color: white;
+}
+
+.Light {
+	background-color: rgba(255, 255, 255, 0.3);
+	color: black;
+}
+
+// Code generated with https://grid.layoutit.com/
