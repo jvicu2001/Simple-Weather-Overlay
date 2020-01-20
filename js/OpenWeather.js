@@ -36,7 +36,7 @@ $(document).ready(function(){
 	
 	function CurrentData() {
 		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/weather",
+			url: "https://api.openweathermap.org/data/2.5/weather",
 			data: {
 				"q": place,
 				"APPID": API_key,
@@ -55,7 +55,7 @@ $(document).ready(function(){
 				condition_type = json.weather[0].main;
 			}
 			if (json.weather[0].icon !== lastCondition.icon) {
-				$( "#icon" ).attr( "src", "http://openweathermap.org/img/wn/" + json.weather[0].icon + "@2x.png" );
+				$( "#icon" ).attr( "src", "https://openweathermap.org/img/wn/" + json.weather[0].icon + "@2x.png" );
 				lastCondition.icon = json.weather[0].icon;
 			}
 			if (condition_type !== lastCondition.condition) {
@@ -81,7 +81,7 @@ $(document).ready(function(){
 	}
 	function DailyData() {
 		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/forecast",
+			url: "https://api.openweathermap.org/data/2.5/forecast",
 			data: {
 				"q": place,
 				"APPID": API_key,
