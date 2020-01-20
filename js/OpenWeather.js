@@ -36,7 +36,7 @@ $(document).ready(function(){
 	
 	function CurrentData() {
 		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/weather",
+			url: "https://api.openweathermap.org/data/2.5/weather",
 			data: {
 				"q": place,
 				"APPID": API_key,
@@ -81,7 +81,7 @@ $(document).ready(function(){
 	}
 	function DailyData() {
 		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/forecast",
+			url: "https://api.openweathermap.org/data/2.5/forecast",
 			data: {
 				"q": place,
 				"APPID": API_key,
