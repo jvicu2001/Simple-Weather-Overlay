@@ -14,71 +14,71 @@
 		<div class="container-fluid">
 			<div class="jumbotron">
 				<h1 class="display-2">Simple Weather Plugin</h1>
-				<p style="text-align: justify;">Have your local or somewhere else's current weather conditions shown in your stream!<br>
+				<p>Have your local or somewhere else's current weather conditions shown in your stream!<br>
 				You'll need a Free API key from OpenWeather to use this <a href="https://openweathermap.org/price#commonquestions">(Registration needed).</a></p>
 			</div>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-xl-5">
-					<form>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend"><span class="input-group-text">OpenWeather's API key</span></div>
-							<input name="api_key" type="text" class="form-control" required>
-						</div>
-						<div class="row">
-							<div class="input-group mb-3 col">
-								<div class="input-group-prepend"><span class="input-group-text">City</span></div>
-								<input type="text" class="form-control" name="city" required>
+					<div class="col-lg-4">
+						<form>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend"><span class="input-group-text">OpenWeather's API key</span></div>
+								<input name="api_key" type="text" class="form-control" required>
 							</div>
-							<div class="input-group mb-3 col">
-								<div class="input-group-prepend"><span class="input-group-text">Country</span></div>
-								<select name="country" class="custom-select" id="country-list">
-									<option value="" selected>Choose a Country</option>
+							<div class="row">
+								<div class="input-group mb-3 col-lg-12 col-xl-6">
+									<div class="input-group-prepend"><span class="input-group-text">City</span></div>
+									<input type="text" class="form-control" name="city" required>
+								</div>
+								<div class="input-group mb-3 col-lg-12 col-xl-6">
+									<div class="input-group-prepend"><span class="input-group-text">Country</span></div>
+									<select name="country" class="custom-select" id="country-list">
+										<option value="" selected>Choose a Country</option>
+									</select>
+								</div>
+								
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend"><span class="input-group-text">Language</span></div>
+								<select name="lang" class="custom-select" id="language-list">
+									<option value="" selected>Language</option>
 								</select>
 							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend"><span class="input-group-text">Measure Units Format</span></div>
+								<select name="units" class="custom-select" id="units">
+									<option selected value="">Standard</option>
+									<option value="metric">Metric</option>
+									<option value="imperial">Imperial</option>
+								</select>
+							</div>
+							<div class="custom-control custom-switch custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="theme" name="theme">
+								<label class="custom-control-label" for="theme">Dark Theme</label>
+							</div>
+							<div class="custom-control custom-switch custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="show-location" name="show-place">
+								<label class="custom-control-label" for="show-location">Show location?</label>
+							</div>
+							<div class="custom-control custom-switch custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="full-description" name="full-description">
+								<label class="custom-control-label" for="full-description">Full Weather Description? (Affected by language)</label>
+							</div>
 							
-						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend"><span class="input-group-text">Language</span></div>
-							<select name="lang" class="custom-select" id="language-list">
-								<option value="" selected>Language</option>
-							</select>
-						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend"><span class="input-group-text">Measure Units Format</span></div>
-							<select name="units" class="custom-select" id="units">
-								<option selected value="">Standard</option>
-								<option value="metric">Metric</option>
-								<option value="imperial">Imperial</option>
-							</select>
-						</div>
-						<div class="custom-control custom-switch custom-control-inline">
-							<input type="checkbox" class="custom-control-input" id="theme" name="theme">
-							<label class="custom-control-label" for="theme">Dark Theme</label>
-						</div>
-						<div class="custom-control custom-switch custom-control-inline">
-							<input type="checkbox" class="custom-control-input" id="show-location" name="show-place">
-							<label class="custom-control-label" for="show-location">Show location?</label>
-						</div>
-						<div class="custom-control custom-switch custom-control-inline">
-							<input type="checkbox" class="custom-control-input" id="full-description" name="full-description">
-							<label class="custom-control-label" for="full-description">Full Weather Description? (Affected by language)</label>
-						</div>
-						
 
-					</form>
-					<button id="generatePreview" type="button" class="btn btn-primary" onclick="makeURL();">Preview</button>
-					<button style="margin: 5px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#finalResultModal" onclick="makeURL();previewSize();">
-							Get URL
-					</button>
-						</div>
-					<div class="col-xl-7">
+						</form>
+						<button id="generatePreview" type="button" class="btn btn-primary d-none d-lg-inline" onclick="makeURL();">Preview</button>
+						<button style="margin: 5px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#finalResultModal" onclick="makeURL();previewSize();">
+								Get URL
+						</button>
+					</div>
+					<div class="col-lg-8 d-none d-lg-block">
 						<div style="text-align: center; margin: 5px;">
 							<h3>Preview <span style="font-size: 0.5em;">(Resize me!)</span></h3>
 							
 						</div>
 						<div id="preview">
-							<iframe id="preview-iframe" src="http://placekitten.com/590/285" width="100%" height="100%" frameborder="0"></iframe>
+							<iframe class="border" id="preview-iframe" src="http://placekitten.com/590/285" width="100%" height="100%" frameborder="0"></iframe>
 						</div>
 						
 					</div>
@@ -96,8 +96,9 @@
 					</div>
 					<div class="modal-body">
 						<p>Now go to your streaming software and add a Browser/Website Source with this URL:</p>
-						<span class="rounded text-light bg-secondary" id="result-url" style="display:flex; padding: 5px;"></span>
-						<p>With width set at <span id="preview-width"></span>px and height at <span id="preview-height"></span>px.</p>
+						<span class="rounded text-light bg-secondary" id="result-url" style="display:flex; padding: 5px; overflow:auto;"></span>
+						<p>With width set at <span id="preview-width"></span>px and height at <span id="preview-height"></span>px<span class="d-lg-none"> for compact view.
+						<br>For shorter but wider view use wifth 900px and height 212px</span>.</p>
 						<p>Happy Streaming!</p>
 						
 					</div>
