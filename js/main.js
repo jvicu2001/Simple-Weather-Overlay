@@ -22,8 +22,8 @@ $(document).ready( function() {
 } );
 function makeURL() {
 	var params = $( "form" ).serialize();
-	$( "#preview-iframe" ).attr( "src", window.location.href + "/weather.html?" + params );
-	$( "#result-url" ).text( window.location.href + "/weather.html?" + params );
+	$( "#preview-iframe" ).attr( "src", window.location.href + "weather.html?" + params );
+	$( "#result-url" ).text( window.location.href + "weather.html?" + params );
 }
 function previewSize() {
 	$( "#preview-width ").text($( "#preview" ).width());
