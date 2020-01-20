@@ -55,7 +55,7 @@ $(document).ready(function(){
 				condition_type = json.weather[0].main;
 			}
 			if (json.weather[0].icon !== lastCondition.icon) {
-				$( "#icon" ).attr( "src", "http://openweathermap.org/img/wn/" + json.weather[0].icon + "@2x.png" );
+				$( "#icon" ).attr( "src", "https://openweathermap.org/img/wn/" + json.weather[0].icon + "@2x.png" );
 				lastCondition.icon = json.weather[0].icon;
 			}
 			if (condition_type !== lastCondition.condition) {
