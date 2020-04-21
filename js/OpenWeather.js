@@ -36,6 +36,7 @@ $(document).ready(function(){
 	var lang = parameters.get("lang");
 	var showPlace = parameters.get("show-place");
 	var fullDescription = parameters.get("full-description");
+	var minMaxText = parameters.get("min-max_text");
 	var midday = 0;
 		
 	
@@ -103,8 +104,14 @@ $(document).ready(function(){
 				Because of this, we determine when to get the next day's data when the "dt" value changes at least by 12 hours,
 				or if there was no previous data.
 				*/
-				$( ".MinTemp" ).text(Math.round(json.daily[0].temp.min) + unitsSymbol);
-				$( ".MaxTemp" ).text(Math.round(json.daily[0].temp.max) + unitsSymbol);
+				if (minMaxText == "on"){
+					$( ".MinTemp" ).text("Min "+Math.round(json.daily[0].temp.min) + unitsSymbol);
+					$( ".MaxTemp" ).text("Max "+Math.round(json.daily[0].temp.max) + unitsSymbol);
+				}
+				else{
+					$( ".MinTemp" ).text(Math.round(json.daily[0].temp.min) + unitsSymbol);
+					$( ".MaxTemp" ).text(Math.round(json.daily[0].temp.max) + unitsSymbol);					
+				}
 				lastCondition.min = json.daily[0].temp.min;
 				lastCondition.max = json.daily[0].temp.max;
 			}
