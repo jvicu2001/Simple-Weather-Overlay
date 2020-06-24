@@ -37,7 +37,10 @@ $(document).ready(function(){
 	var showPlace = parameters.get("show-place");
 	var fullDescription = parameters.get("full-description");
 	var minMaxText = parameters.get("min-max_text");
-	var midday = 0;
+	var nextMin = parameters.get("next-min");
+	var tempMin;
+	var tempMax;
+	var midday = GetMidday();
 		
 	
 	function PlaceData() {
@@ -64,7 +67,14 @@ $(document).ready(function(){
 			console.log("city not found");
 			$( ".CurrentTemp" ).text("City not found.");
 		});
-	}	
+	}
+	
+	function GetMidday(){
+		var timeValue =  new Date;
+		timeValue.setHours(12,0,0,0);
+		return timeValue.getTime();
+	}
+	
 	function CurrentData() {
 		$.ajax({
 			url: "https://api.openweathermap.org/data/2.5/onecall",
@@ -98,22 +108,31 @@ $(document).ready(function(){
 				$( ".CurrentTemp" ).text(Math.round(json.current.temp) + unitsSymbol);
 				lastCondition.current = json.current.temp;
 			}
-			if (json.daily[0].dt > (midday + 43200) || lastCondition.min === ""){
+			if (Date.now() > (midday + 43200000) || lastCondition.min === ""){
 				/*
-				The "dt" value indicates the current day's midday time in epoch, and it (should) change when the day passes.
-				Because of this, we determine when to get the next day's data when the "dt" value changes at least by 12 hours,
-				or if there was no previous data.
+				The "midday" value indicates the current day's midday time in epoch, obtained with the function GetMidday().
+				We compare this value and the current time to check if a day has passed.
+				Here, we also check the nextMin boolean and change the values acordingly.
 				*/
-				if (minMaxText == "on"){
-					$( ".MinTemp" ).text("Min "+Math.round(json.daily[0].temp.min) + unitsSymbol);
-					$( ".MaxTemp" ).text("Max "+Math.round(json.daily[0].temp.max) + unitsSymbol);
+				if (nextMin == "on"){
+					tempMin = json.daily[1].temp.min;
 				}
 				else{
-					$( ".MinTemp" ).text(Math.round(json.daily[0].temp.min) + unitsSymbol);
-					$( ".MaxTemp" ).text(Math.round(json.daily[0].temp.max) + unitsSymbol);					
+					tempMin = json.daily[0].temp.min;
 				}
-				lastCondition.min = json.daily[0].temp.min;
-				lastCondition.max = json.daily[0].temp.max;
+				tempMax = json.daily[0].temp.max;
+				
+				if (minMaxText == "on"){
+					$( ".MinTemp" ).text("Min "+Math.round(tempMin) + unitsSymbol);
+					$( ".MaxTemp" ).text("Max "+Math.round(tempMax) + unitsSymbol);
+				}
+				else{
+					$( ".MinTemp" ).text(Math.round(tempMin) + unitsSymbol);
+					$( ".MaxTemp" ).text(Math.round(tempMax) + unitsSymbol);					
+				}
+				lastCondition.min = tempMin;
+				lastCondition.max = tempMax;
+				midday = GetMidday();
 			}
 		})
 		.always(function() {
