@@ -20,7 +20,3 @@ Features:
 Compact |Wide
 :--------------------------------: | :--------------------------------:
 ![Compact View](/examples/comp.png)|![Wide View](/examples/wide.png)
-
-Known problems:
-
-* OpenWeather only show the minimum and maximum for the time between the request of the data until the end of the day for they onecall's daily forecast, so these values may be inaccurate unless you make the initial request at the beginning of the day. There may be a future update where it estimates these values from the next day, like in the initial release.
