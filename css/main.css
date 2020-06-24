@@ -12,3 +12,8 @@
 	height: 100%;
 	width: 100%;
 }
+
+#why-next-min-info {
+	color: #007bff;
+	cursor: pointer;
+}
