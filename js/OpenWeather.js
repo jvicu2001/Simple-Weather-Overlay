@@ -63,9 +63,34 @@ $(document).ready(function(){
 			CurrentData();
 
 		})
-		.fail(function( json ) {
-			console.log("city not found");
-			$( ".CurrentTemp" ).text("City not found.");
+		.fail(function( jqXHR ) {
+			let status = jqXHR.status;
+			console.log(jqXHR.responseText);
+			if (status == 401){
+				$( ".CurrentTemp" ).text("Bad API key.");
+			}
+			else if (status == 404){
+				$( ".CurrentTemp" ).text("City not found.");
+			}
+			else if (status == 408){
+				$( ".CurrentTemp" ).text("Response timeout. Check your internet connection.");
+			}
+			else if (status == 418){
+				console.log("The mythical taepot has been found.");
+				$( ".CurrentTemp" ).text("TEAPOT");
+			}
+			else if (status == 500){
+				$( ".CurrentTemp" ).text("Internal server (OpenWeather) error (500)\nContact website mantainer.");
+			}
+			else if (status == 502){
+				$( ".CurrentTemp" ).text("Bad Gateway\n Try again later.");
+			}
+			else if (status == 503){
+				$( ".CurrentTemp" ).text("OpenWeather service unavailable.\n Try again later.");
+			}
+			else{
+				$( ".CurrentTemp" ).text("Error " + status + "\nCheck console for more info");
+			}
 		});
 	}
 	
