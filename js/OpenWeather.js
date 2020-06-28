@@ -95,7 +95,7 @@ $(document).ready(function(){
 	}
 	
 	function GetMidday(){
-		var timeValue =  new Date;
+		let timeValue =  new Date;
 		timeValue.setHours(12,0,0,0);
 		return timeValue.getTime();
 	}
@@ -114,7 +114,7 @@ $(document).ready(function(){
 			dataType: "json"
 		})
 		.done(function( json ) {
-			var condition_type = "";
+			let condition_type = "";
 			if (fullDescription === "on") {
 				condition_type = json.current.weather[0].description;
 			}
