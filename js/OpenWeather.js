@@ -19,7 +19,7 @@ $(document).ready(function(){
 		$(".WeatherInfo").addClass("Light");
 	}
 	var place = "";
-	if (parameters.get("country") !== "") {
+	if (parameters.get("country")) {
 		place = parameters.get("city") + "," + parameters.get("country").toLowerCase();
 	}
 	else {
@@ -41,15 +41,15 @@ $(document).ready(function(){
 	var tempMin;
 	var tempMax;
 	var midday = GetMidday();
-	if (parameters.lat != null){
-		placeCoordinates.lat = parameters.lat;
-		placeCoordinates.lon = parameters.lon;
+	if (parameters.get("lat")){
+		placeCoordinates.lat = parameters.get("lat");
+		placeCoordinates.lon = parameters.get("lon");
 	}
 		
 	
 	function PlaceData() {
 		let params = {};
-		if (placeCoordinates.lat != null){
+		if (placeCoordinates.lat){
 			params = {
 				"lat": placeCoordinates.lat,
 				"lon": placeCoordinates.lon,

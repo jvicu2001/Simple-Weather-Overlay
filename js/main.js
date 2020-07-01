@@ -9,6 +9,7 @@ $(document).ready( function() {
 			$("#country-list").append($("<option value=" + country + ">" + json[country] + "</option>"));
 		}
 	});
+	
 	$.ajax({
 		url: "https://gist.githubusercontent.com/jvicu2001/666fc491228453a8f1981167bb6c8912/raw/24b3e3155a0b9f398b629c7f907f2cbc52d36766/openweather_languages.json",
 		type: "GET",
@@ -19,6 +20,9 @@ $(document).ready( function() {
 			$("#language-list").append($("<option value=" + language + ">" + json[language] + "</option>"));
 		}
 	});
+	if ($("#city_input").val() == "Using geolocation info"){
+		$("#city_input").val("");
+	}
 } );
 function makeURL() {
 	var params = $( "form" ).serialize();

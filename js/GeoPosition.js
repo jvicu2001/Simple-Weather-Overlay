@@ -4,6 +4,8 @@ function ShowPositionValues(position){
 	console.log("long: " + pos.longitude);
 	$(".place_field").attr("disabled", true);
 	$("#city_input").val("Using geolocation info");
+	$("#lat_field").val(pos.latitude);
+	$("#lon_field").val(pos.longitude);
 }
 
 function GetPosition(){
