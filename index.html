@@ -29,11 +29,18 @@
 							<div class="row">
 								<div class="input-group mb-3 col-lg-12 col-xl-6">
 									<div class="input-group-prepend"><span class="input-group-text">City</span></div>
-									<input type="text" class="form-control" name="city" required>
+									<input type="text" class="form-control place_field" id="city_input" name="city" required>
+									<div class="input-group-append hover-pointer" onclick="GetPosition()">
+										<span class="input-group-text">
+											<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+											</svg>
+										</span>
+									</div>
 								</div>
 								<div class="input-group mb-3 col-lg-12 col-xl-6">
 									<div class="input-group-prepend"><span class="input-group-text">Country</span></div>
-									<select name="country" class="custom-select" id="country-list">
+									<select name="country" class="custom-select place_field" id="country-list">
 										<option value="" selected>Choose a Country</option>
 									</select>
 								</div>
@@ -150,5 +157,6 @@
 			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
 			crossorigin="anonymous"></script>
 		<script src="js/main.js"></script>
+		<script src="js/GeoPosition.js"></script>
 	</body>
 </html>

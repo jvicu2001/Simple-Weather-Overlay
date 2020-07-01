@@ -41,17 +41,32 @@ $(document).ready(function(){
 	var tempMin;
 	var tempMax;
 	var midday = GetMidday();
+	if (parameters.lat != null){
+		placeCoordinates.lat = parameters.lat;
+		placeCoordinates.lon = parameters.lon;
+	}
 		
 	
 	function PlaceData() {
-		$.ajax({
-			url: "https://api.openweathermap.org/data/2.5/weather",
-			data: {
+		let params = {};
+		if (placeCoordinates.lat != null){
+			params = {
+				"lat": placeCoordinates.lat,
+				"lon": placeCoordinates.lon,
+				"appid": API_key
+			}
+		}
+		else{
+			params = {
 				"q": place,
 				"APPID": API_key,
 				"units": units,
 				"lang": lang
-			},
+			}
+		}
+		$.ajax({
+			url: "https://api.openweathermap.org/data/2.5/weather",
+			data: params,
 			type: "GET",
 			dataType: "json"
 		})
