@@ -6,7 +6,7 @@ Using OpenWeather's API with CC BY-SA 4.0 license
 -----
 Simple Weather Overlay (SWO) allows you to show on stream the weather conditions of any city on Earth.
 The data is recovered from OpenWeather's free API (you must provide your own API key)
-You can use it by visiting http://swo.yaranaika.xyz/
+You can use it by visiting https://swo.yaranaika.xyz/
 
 Features:
 
