@@ -1,4 +1,4 @@
-function ShowPositionValues(position){
+function ShowPositionValues(position){	// Set lat and lon fields to geolocation values
 	let pos = position.coords;
 	console.log("lat: " + pos.latitude);
 	console.log("long: " + pos.longitude);
@@ -8,6 +8,9 @@ function ShowPositionValues(position){
 	$("#lon_field").val(pos.longitude);
 }
 
-function GetPosition(){
+// TODO: Make possible to change back to city input
+
+
+function GetPosition(){	// Get geolocation values from browser
 	navigator.geolocation.getCurrentPosition(ShowPositionValues);
 }
